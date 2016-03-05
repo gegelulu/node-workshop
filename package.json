@@ -9,11 +9,11 @@
   "author": "",
   "license": "GPL-3.0",
   "dependencies": {
+    "good": "^6.6.0",
+    "good-console": "^5.3.1",
     "hapi": "^13.0.0",
+    "hapi-io": "0.0.11",
+    "inert": "^3.2.0",
     "socket.io": "^1.4.5"
-  },
-  "devDependencies": {
-    "bower": "^1.7.7",
-    "gulp": "^3.9.1"
   }
 }
