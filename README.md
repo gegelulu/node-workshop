@@ -1,1 +1,1 @@
-# node-workshop
+# Simple Chat App
