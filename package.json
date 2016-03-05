@@ -6,10 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github:smith-and-web/node-workshop.git"
-  },
   "author": "",
   "license": "GPL-3.0",
   "dependencies": {
