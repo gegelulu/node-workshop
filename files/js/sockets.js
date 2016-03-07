@@ -44,4 +44,4 @@ var Socket = {
   }
 };
 
-window.ChatAppSocket = Socket;
+window.ChatsAppSocket = Socket;

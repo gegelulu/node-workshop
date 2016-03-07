@@ -76,7 +76,7 @@ $(document).ready(function () {
 
   function startChatting() {
     // Redefining for clarity: this is our Socket client library which we've assigned to the window
-    var Socket = window.ChatAppSocket;
+    var Socket = window.ChatsAppSocket;
 
     Socket.joinChannel('default');
 
