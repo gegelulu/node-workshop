@@ -1,8 +1,12 @@
+html {
+  height: 100%;
+}
 body {
-  padding-bottom: 40px;
   background-color: #eee;
+  height: 100%;
 }
 
+/* TOP BAR */
 #headline {
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   font-weight: 700;
@@ -10,9 +14,36 @@ body {
   padding: 50px;
   background: #5cb85c;
   color: #fff;
-  margin-top: 0px;
+  margin: 0px;
 }
 
+#headline.mini {
+  padding: 5px;
+}
+
+/* SOME DEFAULTS */
+
+.loading,
+#signin,
+#chatapp {
+  height: 100%;
+  display: none;
+}
+
+.loading.active,
+#signin.active,
+#chatapp.active {
+  display: block;
+}
+
+.loading {
+  font-size: 48px;
+  width: 48px;
+  height: 57px;
+  margin: 0 auto;
+}
+
+/* SIGNIN FORM */
 .form-signin {
   max-width: 330px;
   padding: 15px;
@@ -46,4 +77,70 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+/* CHAT APP */
+.message-window {
+  height: calc(100% - 50px);
+  width: 100%;
+  background: #fff;
+  padding: 5px;
+}
+
+.message-window .username {
+  font-weight: bold;
+}
+
+.text-input {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.text-input input,
+.text-input button {
+  border-radius: 0!important;
+}
+
+/* ANIMATIONS FOR LOADING ICON */
+@-webkit-keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.loading.active {
+  display: block;
+  -webkit-animation: rotating 0.8s linear infinite;
+  -moz-animation: rotating 0.8s linear infinite;
+  -ms-animation: rotating 0.8s linear infinite;
+  -o-animation: rotating 0.8s linear infinite;
+  animation: rotating 0.8s linear infinite;
 }

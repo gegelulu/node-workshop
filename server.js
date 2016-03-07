@@ -74,11 +74,52 @@ server.route({
   }
 });
 
-////////////////////////////////
-/// Create the socket listeners 
-////////////////////////////////
+////////////////////////////////////
+/// Create the socket and listeners 
+////////////////////////////////////
 
+// Grab a reference to the socket server
 var io = server.plugins['hapi-io'].io;
+
+// Lets create a listener for initial connections so we know when a user is connected
+// The 'connection' event is built into Socket.IO
+// All custom listeners should be made inside this callback
+// These logs are going through our Good plugin
+io.on('connection', function (socket) {
+  server.log('Socket', 'User connected with ID ' + socket.id);
+
+  // We'll also bind to the socket's disconnection so we know when it goes away
+  socket.on('disconnect', function () {
+    server.log('Socket', 'User ' + socket.id + ' disconnected');
+  });
+
+  // The following listeners are specific ones we'll create and are not part of Socket.IO by default
+  // Their names should reflect the event coming through the socket
+
+  // Now we need to create a room for the sockets to join
+  // You could use this to manage channels in the chat app
+  // We will only use one default room for this workshop
+  socket.on('join channel', function (channel) {
+    server.log('Socket', 'User ' + socket.id + ' joined channel ' + channel);
+
+    // We need to tell the socket server that this socket wants to join a room
+    socket.join(channel);
+  });
+
+  // Now we need to have a listener for incoming messages
+  socket.on('message', function (message) {
+    server.log('Socket', 'User ' + message.user + ' sent a message to channel ' + message.channel + ': ' + message.message);
+    // We need to broadcast this message to anyone that is currently in the room
+    // The to() method has a sister in() method, but both accomplish this the same way
+    // Note that we need to create a listener on our client side to handle 'user message'
+    io.to(message.channel).emit('user message', {
+      user: message.user,
+      message: message.message
+    });
+  });
+
+});
+
 
 //Start the server when all plugins/sockets are built
 server.start(function () {
