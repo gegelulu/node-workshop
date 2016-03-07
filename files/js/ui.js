@@ -78,6 +78,7 @@ $(document).ready(function () {
     // Redefining for clarity: this is our Socket client library which we've assigned to the window
     var Socket = window.ChatsAppSocket;
 
+    // Join the default channel
     Socket.joinChannel('default');
 
     // We need to bind to the message input to send our message to the socket
