@@ -96,28 +96,13 @@ io.on('connection', function (socket) {
   // The following listeners are specific ones we'll create and are not part of Socket.IO by default
   // Their names should reflect the event coming through the socket
 
-  // Now we need to create a room for the sockets to join
-  // You could use this to manage channels in the chat app
-  // We will only use one default room for this workshop
-  socket.on('join channel', function (channel) {
-    server.log('Socket', 'User ' + socket.id + ' joined channel ' + channel);
-
-    // We need to tell the socket server that this socket wants to join a room
-    socket.join(channel);
-  });
-
-  // Now we need to have a listener for incoming messages
-  socket.on('message', function (message) {
-    server.log('Socket', 'User ' + message.user + ' sent a message to channel ' + message.channel + ': ' + message.message);
-    // We need to broadcast this message to anyone that is currently in the room
-    // The to() method has a sister in() method, but both accomplish this the same way
-    // Note that we need to create a listener on our client side to handle 'user message'
-    io.to(message.channel).emit('user message', {
-      user: message.user,
-      message: message.message
-    });
-  });
-
+  // Create a listener for when a use joins a room
+  // Rooms are specific for Socket.IO but can be replicated in any socket service using some simple logic
+  // We need a listener to mange clients connecting and joining a room
+  // Include a server.log() that contains which channel was joined and by what socket connection
+  // The event that should be listened to will be called 'join room'
+  // Use the join() function to tell the socket server that the socket is joining a room
+  
 });
 
 
