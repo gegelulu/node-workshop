@@ -16,31 +16,18 @@ $(document).ready(function () {
 var Socket = {
 
   // We need a function to join a specific channel
+  // First, add a console.log() with a short message and the 'channel' variable
+  // We'll emit the join channel event to our socket server, passing the 'channel' variable with it
+  // We also need to capture messages that are sent to this channel. Listen for the 'user message' event
+  // In the 'user message' callback, use a console.log() to show the info
+  // Also use $messageWindow.append('<div><span class="username">' + [sent by this user] + '</span>: ' + [message received] + '</div>'); to add it to the chat window
   joinChannel: function joinChannel(channel) {
-    console.log('Joining channel', channel);
-
-    // This tells the socket server that we're joining a channel (default)
-    socket.emit('join channel', channel);
-
-    // We also need to get messages that are sent to this channel (default)
-    // We'll print them in the message screen
-    socket.on('user message', function (message) {
-      console.log('Got user message', message);
-
-      // We'll use a little basic jQuery to print the message to the window
-      $messageWindow.append('<div><span class="username">' + message.user + '</span>: ' + message.message + '</div>');
-    });
+    
   },
 
   // We need a function to send a message along with the username
   sendMessage: function sendMessage(message, user) {
-    console.log('Sending message', message);
-
-    socket.emit('message', {
-      message: message,
-      user: user,
-      channel: 'default'
-    });
+    
   }
 };
 
