@@ -107,16 +107,13 @@ io.on('connection', function (socket) {
   });
 
   // Now we need to have a listener for incoming messages
-  socket.on('message', function (message) {
-    server.log('Socket', 'User ' + message.user + ' sent a message to channel ' + message.channel + ': ' + message.message);
-    // We need to broadcast this message to anyone that is currently in the room
-    // The to() method has a sister in() method, but both accomplish this the same way
-    // Note that we need to create a listener on our client side to handle 'user message'
-    io.to(message.channel).emit('user message', {
-      user: message.user,
-      message: message.message
-    });
-  });
+  // The event that we need to listen for is called 'message'
+  // The data received will be an object 'message' that contains the properties 'content', 'user' and 'channel'
+  // 'message' will be passed into the callback function
+  // Using the to() function on 'io', broadcast to the channel by emitting the event 'user message'
+  // Send an object with the keys 'user' and 'message' with the 'user message' event
+  // 'user' and 'message' will use the data inside the 'message' object
+
 
 });
 
