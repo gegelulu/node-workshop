@@ -33,14 +33,12 @@ var Socket = {
   },
 
   // We need a function to send a message along with the username
+  // First write a console.log() to display the message being sent
+  // Then write the sending message event emitter
+  // Send the data as the same object that the server is expecting
+  // Use 'default' as the channel
   sendMessage: function sendMessage(message, user) {
-    console.log('Sending message', message);
-
-    socket.emit('message', {
-      message: message,
-      user: user,
-      channel: 'default'
-    });
+    
   }
 };
 
