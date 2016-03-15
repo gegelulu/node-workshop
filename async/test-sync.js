@@ -12,5 +12,9 @@ setInterval(function () {
 
 setInterval(function () {
   console.log('Running a thread blocking process');
-  exec('sleep 3');
+  if (process.platform == 'win32') {
+    exec('PING -n 3 -w 1000 127.1 >NUL');
+  } else {
+    exec('sleep 3');
+  }
 }, 5000);
