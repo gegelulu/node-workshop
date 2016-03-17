@@ -75,6 +75,24 @@ $(document).ready(function () {
   //////////////////////////////////////////
 
   function startChatting() {
+    // Redefining for clarity: this is our Socket client library which we've assigned to the window
+    var Socket = window.ChatsAppSocket;
 
+    // Join the 'default' channel
+    Socket.joinChannel();
+
+    // We need to bind to the message input to send our message to the socket
+    $messageInput.submit(function (e) {
+
+      // Get the message and then clear the input
+      var message = $messageInput.find('#message').val();
+      $messageInput.find('#message').val("");
+
+      // Send our message along with the username (can be referenced as user[0])
+      Socket.sendMessage();
+
+      // Stop the default submit of the form
+      e.preventDefault();
+    });
   }
 });

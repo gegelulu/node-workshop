@@ -86,7 +86,29 @@ var io = server.plugins['hapi-io'].io;
 // The listener needs a callback function which the variable socket is passed to
 // Add a server.log() function that tells us a user has connected. Include the socket identifier with socket.id. Use standard string concatenation.
 
+// THE FOLLOWING SHOULD BE WRITTEN INSIDE THE CALLBACK FUNCTION
 
+  // We'll also bind to the socket's disconnection so we know when it goes away
+  // The event to listen to is 'disconnect'
+  // Add a callback function that performs a server.log()
+
+  // The following listeners are specific ones we'll create and are not part of Socket.IO by default
+  // Their names should reflect the event coming through the socket
+
+  // Create a listener for when a use joins a room
+  // Rooms are specific for Socket.IO but can be replicated in any socket service using some simple logic
+  // We need a listener to mange clients connecting and joining a room
+  // Include a server.log() that contains which channel was joined and by what socket connection
+  // The event that should be listened to will be called 'join room'
+  // Use the join() function to tell the socket server that the socket is joining a room
+
+  // Now we need to have a listener for incoming messages
+  // The event that we need to listen for is called 'message'
+  // The data received will be an object 'message' that contains the properties 'content', 'user' and 'channel'
+  // 'message' will be passed into the callback function
+  // Using the to() function on 'io', broadcast to the channel by emitting the event 'user message'
+  // Send an object with the keys 'user' and 'message' with the 'user message' event
+  // 'user' and 'message' will use the data inside the 'message' object
 
 //Start the server when all plugins/sockets are built
 server.start(function () {
